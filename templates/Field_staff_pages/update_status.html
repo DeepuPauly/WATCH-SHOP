@@ -1,0 +1,30 @@
+{% include 'Field_staff_pages/fstaff_header.html' %}
+
+
+<center>
+<h1>Update Status</h1>
+  <table class="table text-start align-middle table-bordered table-hover mb-0">
+    <form  method="post" >
+        {% csrf_token %}
+        <tr>
+            <th>Status</th>
+            <td>
+                <select class="form-control" required name="status">
+                    <option value="on the way">on the way</option>
+                    <option value="delivered">delivered</option>
+                    <!-- <option value="canceled">canceled</option> -->
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <button type="submit" class="btn btn-primary mr-2" name='submit' value="submit">Submit</button>
+                
+            </td>
+        </tr>
+    </form>
+</table>
+
+
+      </center>
+        {%include 'footer.html'%}   

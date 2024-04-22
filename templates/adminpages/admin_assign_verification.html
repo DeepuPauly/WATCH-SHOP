@@ -1,0 +1,65 @@
+{% if request.session.utype == 'admin' %}
+    {% include 'adminpages/admin_header.html' %}
+{% elif  request.session.utype == 'Working Staff' %}
+    {% include 'working_staff_pages/working_staff_header.html' %}
+{% endif %}
+
+<table class="table text-start align-middle table-bordered table-hover mb-0">
+  <thead>
+    <tr>
+      <th>Sl.No</th>
+      <th>Name</th>
+      <th>Image</th>
+      <th>Brand</th>
+      <th>Category</th>
+      <th>Sub Category</th>
+      <th>Price</th>
+      <th>Description</th>
+      <th>Year of ownership</th>
+      <th>Commission</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for i in q %}
+      <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ i.Item_Name }}</td>
+        <td><img src="/{{ i.Item_Image }}" srcset="" alt="" width="100" height="100"></td>
+        <td>{{ i.BRAND.Brand_Name }}</td>
+        <td>{{ i.CAT.Cat_Name }}</td>
+        <td>{{ i.SUBCAT.Subcat_Name }}</td>
+        <td>Rs.{{ i.Item_Price }}</td>
+        <td>{{ i.Item_Desc }}</td>
+        <td>{{ i.year_of_ownership }}</td>
+        <td class="commission"></td>
+        <td>{{ i.Item_Status }}</td>
+        
+        {% if i.Item_Status == 'verified' %}
+          <td><a href="/product_add/{{ i.id }}">add product</a></td>
+        {% elif i.Item_Status == 'selling' %}
+          <td><a href="/verify_item/{{ i.id }}">verify product</a></td>
+        {% endif %}
+        
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<script>
+  // Calculate and display commission for each item
+  document.querySelectorAll("tbody tr").forEach(function(row) {
+    // Get the item price
+    var itemPrice = parseFloat(row.querySelector("td:nth-child(7)").textContent.split('Rs.')[1]);
+
+    // Calculate commission (5% of item price)
+    var commission = itemPrice * 0.05;
+
+    // Display commission in the last column
+    row.querySelector(".commission").textContent = "Commission: Rs." + commission.toFixed(2);
+  });
+</script>
+
+{% include 'footer.html' %}
+
+

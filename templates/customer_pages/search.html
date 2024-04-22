@@ -1,0 +1,97 @@
+<div class="menu-list ">
+    <div class="sidebar">
+        <ul class="menu-content collapse out">
+            <li><a href="#all" data-bs-toggle="tab" >All</a></li>
+        </ul>
+        <h4 class="headss">CATEGORIES</h4>
+        <ul class="menu-content collapse out">
+           
+            {% for i in c %}
+            <li><a href="#{{i.Cat_Name}}" data-bs-toggle="tab">{{i.Cat_Name}}</a></li>
+            {% endfor %}
+        </ul>
+
+        <h4 class="headss">GENRES</h4>
+        <ul class="menu-content collapse out">
+            
+            {% for i in g %}
+            <li><a href="#{{i.Genre_Name}}" data-bs-toggle="tab">{{i.Genre_Name}}</a></li>
+            {% endfor %}
+        </ul>
+
+        <h4 class="headss">LANGUAGE</h4>
+        <ul class="menu-content collapse out">
+            
+            {% for i in l %}
+            <li><a href="#{{i.Lang_Name}}" data-bs-toggle="tab">{{i.Lang_Name}}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+
+</div>
+
+
+              
+
+</div>
+
+</div>        
+            
+</div>  </div>
+
+        <div class="col-12 col-md-8 col-lg-9">
+           <div class="shop_grid_product_area ">
+    <div class="row">
+        {% for i in q %}
+        <!-- Single gallery Item -->
+        <div class="col-12 col-sm-6 col-lg-4  product-grid {{i.CAT.Cat_Name}} {{i.LANG.Lang_Name}} {{i.GENRE.Genre_Name}} single_gallery_item wow fadeInUpBig" data-wow-delay="0.2s">
+            <!-- Product Image -->
+            <div class="product-img">
+                <img src="/{{i.Item_Image}}" alt="" style="width:200; height:300px;">
+                <div class="product-quicview">
+                    <a href="#" ><i class="ti-plus"></i></a>
+                </div>
+            </div>
+            <!-- Product Description -->
+            <div class="product-description">
+                <h4 class="product-price">Price ${{i.Item_Price}}</h4>
+                <b><p>{{i.Item_Name}}</p></b>
+                <p>{{i.CAT.Cat_Name}}</p>
+                <p>{{i.LANG.Lang_Name}}</p>
+                <!-- Add to Cart -->
+                <a href="/addtocart/{{i.id}}" class="btn btn-outline-danger">ADD TO CART</a>
+            </div>
+        </div>
+        {% endfor %} 
+      
+                </div>
+            </div>
+
+           
+
+        </div>
+    </div>
+</div>
+</section>
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+$(document).ready(function () {
+// Attach click event handlers to category, genre, and language links
+$('.sidebar ul li a').click(function (e) {
+e.preventDefault(); // Prevent default behavior (page reload)
+
+var filter = $(this).attr('href').substring(1); // Extract the filter name (category, genre, or language)
+
+// Show/hide products based on the selected filter
+if (filter === 'all') {
+    $('.product-grid').show(); // Show all products
+} else {
+    $('.product-grid').hide().filter(function () {
+        return $(this).hasClass(filter);
+    }).show();
+}
+});
+});
+</script>
+{% include 'customer_pages/customer_footer.html' %}

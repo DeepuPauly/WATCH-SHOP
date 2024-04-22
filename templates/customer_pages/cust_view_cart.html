@@ -1,0 +1,114 @@
+{% include 'customer_pages/customer_header.html' %}
+
+	<div class="bg-holder" style="background-image:url(/static/customerlatesttemplate/assets/img/gallery/header-bg.png);background-position:right top;background-size:contain;">
+	<br>
+    <br>
+    <br>
+    
+{% if qi %}
+<!-- left arrow -->
+<div class="card-container">
+    {% for i in qi %}
+        <div class="card">
+            <div class="card-header">
+                <h3>{{ i.Item.Item_Name }}</h3>
+                <span class="price">Rs.{{ i.Item.Item_Price }}</span>
+            </div>
+            <div class="card-body">
+                <img src="/{{ i.Item.Item_Image }}" alt="{{ i.Item.Item_Name }}">
+                <p><span style="color: black;">{{ i.Item.Item_Desc }}</span></p>
+            </div>
+            <div class="card-footer">
+                <p><span style="color: black;">Category: {{ i.Item.CAT.Cat_Name }}</span></p>
+                <p><span style="color: black;">Subcategory: {{ i.Item.SUBCAT.Subcat_Name }}</span></p>
+                <p><span style="color: black;">Brand: {{ i.Item.BRAND.Brand_Name }}</span></p>
+                <p><span style="color: black;">Quantity in Cart: {{ i.Cart_Quantity }}</span></p>
+                <a class="btn btn-primary" href="/delete_cart/{{ i.id }}">Remove</a>
+            </div>
+        </div>
+        
+    {% endfor %}
+</div>
+<!-- right arrow -->
+<center>
+        <h1><a class="btn btn-primary" href="/customer_order/{{ cid }}">place order</a></h1>
+    </center>
+   
+{% else %}
+<center>
+<h1 style="font-weight: bold; opacity: 0.7;">NO PRODUCTS IN CART</h1>
+</center>
+    <!-- <a class="btn btn-primary" href="/customer_order/{{ cid }}" style="position: absolute; right: 20px; top: 20px;">Place Order</a> -->
+
+{% endif %}
+
+
+</div>
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+<style>
+    .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card {
+    width: 300px;
+    border: 1px solid #353232;
+    border-radius: 8px;
+    margin: 10px;
+    transition: transform 0.2s;
+}
+
+.card-header {
+    padding: 10px;
+    background-color: #302e2e;
+    border-bottom: 1px solid #000000;
+}
+
+.card-header h3 {
+    margin: 0;
+}
+
+.price {
+    font-weight: bold;
+}
+
+.card-body {
+    padding: 10px;
+}
+
+.card-body img {
+    max-width: 100%;
+    height: auto;
+}
+
+.card-footer {
+    padding: 10px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: red;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.btn:hover {
+    background-color: #2c2d2e;
+}
+.card:hover {
+    transform: translateY(-20px); /* Move card up on hover */
+}
+@media (max-width: 768px) {
+    .col-md-4 {
+        flex: 0 0 100%; /* Set column width to 100% for smaller devices */
+    }
+}
+</style>
+
+{%include 'customer_pages/customer_footer.html' %}

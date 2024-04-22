@@ -1,0 +1,73 @@
+{%include 'customer_pages/customer_header.html' %}
+<section class="py-0" id="header">
+	<div class="bg-holder" style="background-image:url(/static/customerlatesttemplate/assets/img/gallery/header-bg.png);background-position:right top;background-size:contain;">
+	</div>
+<div class="container">
+	<div class="row align-items-center min-vh-75 min-vh-xl-100">
+	  <div class="col-md-8 col-lg-6 text-md-start text-center">
+		<h1 class="display-1 lh-sm text-uppercase text-light">Custom Watches For <br class="d-none d-xxl-block" /> Any Occasion</h1>
+		<div class="pt-4"><a class="btn btn-sm btn-outline-primary me-3" href="/cust_view_products">Buy Watches</a><a class="btn btn-sm btn-outline-primary" onclick="showPopup()" href="/cust_sell_itemss">Sell Watches</a></div>
+	  </div>
+	</div>
+  </div>
+</section>
+<section class="bg-black py-8 pt-0" id="store">
+  <div class="bg-holder" style="background-image:url(/static/customerlatesttemplate/assets/img/gallery/store-bg.png);background-position:left bottom;background-size:contain;">
+  </div>
+  <!--/.bg-holder-->
+
+  <div class="container-lg">
+	<div class="row flex-center">
+	  <div class="col-6 order-md-0 text-center text-md-start"></div>
+	  <div class="col-sm-10 col-md-6 col-lg-6 text-center text-md-start">
+		<div class="col-4 position-relative ms-auto py-5"><a class="carousel-control-prev carousel-icon z-index-2" href="#carouselExampleFade" role="button" data-bs-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden">Previous</span></a><a class="carousel-control-next carousel-icon z-index-2" href="#carouselExampleFade" role="button" data-bs-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden">Next</span></a></div>
+		<div class="carousel slide carousel-fade" id="carouselExampleFade" data-bs-ride="carousel">
+		  <div class="carousel-inner">
+			<div class="carousel-item active">
+			  <div class="row h-100">
+				<div class="col-12">
+				  <h5 class="fs-3 fs-lg-5 lh-sm text-uppercase">Our store</h5>
+				  <p class="my-4 pe-xl-5">Welcome to EliteWrist, the epitome of online watch prestige marketplace where luxury meets discerning collectors. At EliteWrist, we curate a seamless platform for enthusiasts to indulge in the world of horological excellence, offering a unique space to both buy and sell premium timepieces. Elevate your collection by exploring an array of meticulously selected watches from renowned brands, each embodying craftsmanship and sophistication. Join our community and experience the epitome of elegance, where time is not just measured, but celebrated. </p>
+				</div>
+			  </div>
+			</div>
+			<div class="carousel-item">
+			  <div class="row h-100">
+				<div class="col-12">
+				  <h5 class="fs-3 fs-lg-5 lh-sm text-uppercase">Our store</h5>
+				  <p class="my-4 pe-xl-5">Welcome to EliteWrist, the epitome of online watch prestige marketplace where luxury meets discerning collectors. At EliteWrist, we curate a seamless platform for enthusiasts to indulge in the world of horological excellence, offering a unique space to both buy and sell premium timepieces. Elevate your collection by exploring an array of meticulously selected watches from renowned brands, each embodying craftsmanship and sophistication. Join our community and experience the epitome of elegance, where time is not just measured, but celebrated. </p>
+				</div>
+			  </div>
+			</div>
+			<div class="carousel-item">
+			  <div class="row h-100">
+				<div class="col-12">
+				  <h5 class="fs-3 fs-lg-5 lh-sm text-uppercase">Our store</h5>
+				  <p class="my-4 pe-xl-5">Welcome to EliteWrist, the epitome of online watch prestige marketplace where luxury meets discerning collectors. At EliteWrist, we curate a seamless platform for enthusiasts to indulge in the world of horological excellence, offering a unique space to both buy and sell premium timepieces. Elevate your collection by exploring an array of meticulously selected watches from renowned brands, each embodying craftsmanship and sophistication. Join our community and experience the epitome of elegance, where time is not just measured, but celebrated. </p>
+				</div>
+			  </div>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+  </div>
+</section>
+
+
+
+<script>
+	function showPopup() {
+		
+		var confirmation = confirm("Disclaimer:\n\n5% of the total amount claimed by the seller will be granted to the admin.");
+		
+		
+		if (confirmation) {
+			window.location.href = "/cust_sell_items";
+		} else {
+			
+			window.history.back();
+		}
+	}
+</script>
+{%include 'customer_pages/customer_footer.html' %}

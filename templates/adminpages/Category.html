@@ -1,0 +1,210 @@
+{% if request.session.utype == 'admin' %}
+    {% include 'adminpages/admin_header.html' %}
+{% elif  request.session.utype == 'Working Staff' %}
+    {% include 'working_staff_pages/working_staff_header.html' %}
+{% endif %}
+{%if q3%}
+<form action="" method="post">
+    {% csrf_token %} 
+    <h1>Update CATEGORY</h1>
+    <table class="table text-start align-middle table-bordered table-hover mb-0">
+        
+    
+          <tr>
+                <th>Category Name</th>
+                <td> <input type="text" required class="form-control" id="Categoryname" name="Categoryname" value="{{q3.Cat_Name}}"></td>
+            </tr>
+        </tr>  
+        <tr>
+            <th>Category Description</th>
+            <td><textarea name="Description" id="Description" required class="form-control" cols="80" rows="5">{{q3.Cat_Desc}}</textarea></td>
+        </tr>
+
+<tr>
+    <td> <input type="submit" id="Price" class="btn btn-danger" name="update" value="update" ></td>
+</tr>
+</table>
+
+</form>
+{%else%}
+<form action="" method="post">
+    {% csrf_token %} 
+    <h1>ADD CATEGORY</h1>
+    <table class="table text-start align-middle table-bordered table-hover mb-0">
+        
+    
+          <tr>
+                <th>Category Name</th>
+                <td> <input type="text" id="Categoryname" required class="form-control" name="Categoryname"></td>
+            </tr>
+        </tr>  
+        <tr>
+            <th>Category Description</th>
+            <td> <input type="text" id="Price" required class="form-control" name="Description"></td>
+        </tr>
+
+<tr>
+    <td> <input type="submit" id="Price" name="submit" class="btn btn-danger" value="Submit"></td>
+</tr>
+</table>
+
+</form>
+<div class="card-body" id="div_print">
+    <p id="eliteWristHeading" style="display: none; border-bottom: 2px solid black;">
+        <span style="font-size: 60px;"><b>Elite <span style="color: red;">Wrist</span></b><br>
+        <span style="font-size: small;">Date : {{today_date}} <br>Time : {{current_time}}</span></span>
+    </p>
+    <h1>CATEGORY</h1>
+<table class="table text-start align-middle table-bordered table-hover mb-0">
+    <thead>
+        <tr>
+            <th>Sl.No</th>
+            <th>Category Name</th>
+            <th>Category Description</th>
+            
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {%for i in q1%}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.Cat_Name}}</td>
+            <td>{{i.Cat_Desc}}</td>
+            <td><a href="adminupdatecategory/{{i.id}}" class="action-buttons">Update</a></td>
+        </tr>
+    
+    {%endfor%}
+    </tbody>
+    {%endif%}
+    </table>
+</div>
+<button onclick="printDiv()" class="btn btn-danger" style="margin-left:800px;margin-top:30px">Download</button>
+
+
+<script>
+    // Function to toggle visibility of the heading
+    function toggleHeadingVisibility() {
+        var heading = document.getElementById("eliteWristHeading");
+        if (heading.style.display === "none") {
+            heading.style.display = "block";
+        } else {
+            heading.style.display = "none";
+        }
+    }
+  
+    // Function to hide action buttons
+    function hideActionButtons() {
+        var actionButtons = document.querySelectorAll('.action-buttons');
+        actionButtons.forEach(function(button) {
+            button.style.display = 'none';
+        });
+    }
+  
+    // Function to show action buttons
+    function showActionButtons() {
+        var actionButtons = document.querySelectorAll('.action-buttons');
+        actionButtons.forEach(function(button) {
+            button.style.display = 'inline'; // assuming action buttons were inline
+        });
+    }
+  
+    // Function to print the content
+    function printDiv() {
+        toggleHeadingVisibility(); // Toggle visibility before printing
+        hideActionButtons(); // Hide action buttons before printing
+        var divContents = document.getElementById("div_print").innerHTML;
+        var a = window.open('', '', 'height=500, width=500');
+        a.document.write(divContents);
+        a.document.close();
+        a.print();
+        toggleHeadingVisibility(); // Toggle visibility back after printing
+        showActionButtons(); // Show action buttons after printing
+    }
+  </script>
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        $(function() {
+            $("input[name='Categoryname']").on('input', function(e) {
+                $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+    
+            });
+            $("input[name='Description']").on('input', function(e) {
+                $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+    
+            });
+            $("input[name='Place']").on('input', function(e) {
+                $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+    
+            });
+            $("input[name='City']").on('input', function(e) {
+                $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+    
+            });
+            $("input[name='Number']").on('input', function(e) {
+              $(this).val($(this).val().replace(/[^0-9]/g, ''));
+                
+            });
+            $("input[name='Pincode']").on('input', function(e) {
+              $(this).val($(this).val().replace(/[^0-9]/g, ''));
+                
+            });
+            $("input[name='Dist']").on('input', function(e) {
+              $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+  
+          });
+          $("input[name='House']").on('input', function(e) {
+            $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+
+        });
+            $("input[name='Email']").on('input', function(e) {
+                  var re = /([A-Z0-9a-z_-][^@])+?@[^$#<>?]+?\.[\w]{1,}/.test(this.value);
+                    if(!re) {
+                        $('#eerror').show();
+                    } else {
+                        $('#eerror').hide();
+                    }
+            });            
+            $("input[name='Password']").on('input', function(e) {
+                
+              $(this).val($(this).val().replace(/[^0-9A-Za-z@/. ]/g, ''));
+                
+            });
+        });
+        function check() {
+            
+            if (document.getElementById('password').value == document.getElementById('confirm_password').value) {
+                
+                document.getElementById('message').style.color = 'green';
+                document.getElementById('message').innerHTML = 'matching';
+        } else {
+                document.getElementById('message').style.color = 'red';
+                document.getElementById('message').innerHTML = 'not matching';
+        }
+    }
+    </script>
+    
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#search").on("keyup", function () {
+                var searchTerm = $(this).val().toLowerCase();
+                $(".member-row").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(searchTerm) >= 0);
+                });
+            });
+        });
+    </script>
+    
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+    integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+    crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+    integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+    crossorigin="anonymous"></script>
+{%include 'footer.html' %}

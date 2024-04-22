@@ -1,0 +1,44 @@
+{%include 'working_staff_pages/working_staff_header.html' %}
+<h1>VIEW Customer</h1>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Sl.No</th>
+            <th>Username</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>House Name</th>
+            <th>Place</th>
+            <th>City</th>
+            <th>District</th>
+            <th>Pincode</th>
+            <th>Phone Number</th>
+            <th>DOB</th>
+            <th>Gender</th>
+            <th>Status</th>
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {%for i in q4%}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.USERNAME.Username}}</td>
+            <td>{{i.Customer_Fname}}</td>
+            <td>{{i.Customer_Lname}}</td>
+            <td>{{i.Customer_House}}</td>
+            <td>{{i.Customer_Place}}</td>
+            <td>{{i.Customer_City}}</td>
+            <td>{{i.Customer_Dist}}</td>
+            <td>{{i.Customer_Pin}}</td>
+            <td>{{i.Customer_Phone}}</td>
+            <td>{{i.Customer_DOB}}</td>
+            <td>{{i.Customer_Gender}}</td>
+            <td>{{i.Customer_Status}}</td>
+
+        </tr>
+        {%endfor%}
+    </tbody>
+    </table>
+{%include 'footer.html' %}

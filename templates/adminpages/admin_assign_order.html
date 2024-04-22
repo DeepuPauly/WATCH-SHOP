@@ -1,0 +1,26 @@
+{% if request.session.utype == 'admin' %}
+    {% include 'adminpages/admin_header.html' %}
+{% elif  request.session.utype == 'Working Staff' %}
+    {% include 'working_staff_pages/working_staff_header.html' %}
+{% endif %}
+
+<center>
+    <h1>Assign Order</h1>
+<form method="post">
+    <table class="table">
+        <tr>
+            <th>Staff name</th>
+            <td><select class="form-control" required name="staff">
+                {% for i in q %}
+                <option value="{{i.id}}">{{i.Staff_Fname}}</option>
+                {% endfor %}
+            </select></td>
+        </tr>
+        <tr>
+            <td align="center" colspan="2"><input type="submit" class="btn btn-danger" name="submit"></td>
+        </tr>
+    </table>
+</form>
+</center>
+
+{%include 'footer.html'%}

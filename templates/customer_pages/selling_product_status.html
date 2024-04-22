@@ -1,0 +1,78 @@
+{% include 'customer_pages/customer_header.html' %}
+<div class="bg-holder" style="background-image:url(/static/customerlatesttemplate/assets/img/gallery/store-bg.png);background-position:left bottom;background-size:static;">
+<br><br><br><br>
+{% if q1 %}
+
+<div class="container">
+    <div class="row">
+        {% for i in q1 %}
+        <div class="col-md-3 mb-3">
+            <div class="card" style="height: 700px;">
+                <img src="/{{ i.Item_Image }}" class="card-img-top" width="300px" height="385px" alt="{{ i.Item_Name }}">
+                <div class="card-body">
+                    <h3 class="card-title"><span style="color: red;">{{ i.Item_Name }}</span></h3>
+                    <p class="card-text">Category: {{ i.CAT.Cat_Name }}</p>
+                    <p class="card-text">Subcategory: {{ i.SUBCAT.Subcat_Name }}</p>
+                    <p class="card-text">Brand: {{ i.BRAND.Brand_Name }}</p>
+                    <p class="card-text">Price: {{ i.Item_Price }}</p>
+                    <p class="card-text">Description: {{ i.Item_Desc }}</p>
+                    <p class="card-text">Year of Ownership: {{ i.year_of_ownership }}</p>
+                    <h5 class="card-text">Status: {{ i.Item_Status }}</h5> 
+                    {% if i.Item_Status == "product added" %}
+                    <a class="btn btn-danger" href="cust_view_bill_for_sold_product/{{i.id}}">Bill</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+{% else %}
+<center>
+<h1 style="font-weight: bold; opacity: 0.7;">NO PRODUCTS</h1>
+</center>
+    <!-- <a class="btn btn-primary" href="/customer_order/{{ cid }}" style="position: absolute; right: 20px; top: 20px;">Place Order</a> -->
+
+{% endif %}
+</div>
+<style>
+    .container {
+    padding-top: 20px; /* Adjust top padding as needed */
+    padding-bottom: 20px; /* Adjust bottom padding as needed */
+}
+
+.card {
+    border: 1px solid #ccc; /* Card border */
+    border-radius: 10px; /* Card border radius */
+    transition: transform 0.2s; /* Smooth card hover effect */
+}
+
+.card:hover {
+    transform: translateY(-20px); /* Move card up on hover */
+}
+
+.card-img-top {
+    border-top-left-radius: 10px; /* Rounded corners for top-left and top-right */
+    border-top-right-radius: 10px;
+}
+
+.card-title {
+    font-size: 1.2rem; /* Card title font size */
+    font-weight: bold; /* Card title font weight */
+    margin-bottom: 10px; /* Bottom margin for title */
+}
+
+.card-text {
+    color: black; /* Set text color to black */
+}
+
+/* Media query for smaller devices */
+@media (max-width: 768px) {
+    .col-md-4 {
+        flex: 0 0 100%; /* Set column width to 100% for smaller devices */
+    }
+}
+
+</style>

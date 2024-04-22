@@ -1,0 +1,99 @@
+{% if request.session.utype == 'admin' %}
+    {% include 'adminpages/admin_header.html' %}
+{% elif  request.session.utype == 'Working Staff' %}
+    {% include 'working_staff_pages/working_staff_header.html' %}
+{% endif %}
+<div class="card-body" id="div_print">
+    <p id="eliteWristHeading" style="display: none; border-bottom: 2px solid black;">
+        <span style="font-size: 60px;"><b>Elite <span style="color: red;">Wrist</span></b><br>
+        <span style="font-size: small;">Date : {{today_date}} <br>Time : {{current_time}}</span></span>
+    </p>
+<h1>Customers</h1>
+<table class="table text-start align-middle table-bordered table-hover mb-0">
+    <thead>
+        <tr>
+            <th>Sl.No</th>
+            <th>Username</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>House Name</th>
+            <th>Place</th>
+            <th>City</th>
+            <th>District</th>
+            <th>Pincode</th>
+            <th>Phone Number</th>
+            <th>DOB</th>
+            <th>Gender</th>
+            <th>Status</th>
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {%for i in q3%}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.USERNAME.Username}}</td>
+            <td>{{i.Customer_Fname}}</td>
+            <td>{{i.Customer_Lname}}</td>
+            <td>{{i.Customer_House}}</td>
+            <td>{{i.Customer_Place}}</td>
+            <td>{{i.Customer_City}}</td>
+            <td>{{i.Customer_Dist}}</td>
+            <td>{{i.Customer_Pin}}</td>
+            <td>{{i.Customer_Phone}}</td>
+            <td>{{i.Customer_DOB}}</td>
+            <td>{{i.Customer_Gender}}</td>
+            <td>{{i.Customer_Status}}</td>
+
+        </tr>
+        {%endfor%}
+    </tbody>
+    </table>
+</div>
+<button onclick="printDiv()" class="btn btn-danger" style="margin-left:800px;margin-top:30px">Download</button>
+
+
+
+<script>
+    // Function to toggle visibility of the heading
+    function toggleHeadingVisibility() {
+        var heading = document.getElementById("eliteWristHeading");
+        if (heading.style.display === "none") {
+            heading.style.display = "block";
+        } else {
+            heading.style.display = "none";
+        }
+    }
+  
+    // Function to hide action buttons
+    function hideActionButtons() {
+        var actionButtons = document.querySelectorAll('.action-buttons');
+        actionButtons.forEach(function(button) {
+            button.style.display = 'none';
+        });
+    }
+  
+    // Function to show action buttons
+    function showActionButtons() {
+        var actionButtons = document.querySelectorAll('.action-buttons');
+        actionButtons.forEach(function(button) {
+            button.style.display = 'inline'; // assuming action buttons were inline
+        });
+    }
+  
+    // Function to print the content
+    function printDiv() {
+        toggleHeadingVisibility(); // Toggle visibility before printing
+        hideActionButtons(); // Hide action buttons before printing
+        var divContents = document.getElementById("div_print").innerHTML;
+        var a = window.open('', '', 'height=500, width=500');
+        a.document.write(divContents);
+        a.document.close();
+        a.print();
+        toggleHeadingVisibility(); // Toggle visibility back after printing
+        showActionButtons(); // Show action buttons after printing
+    }
+  </script>
+
+{%include 'footer.html' %}

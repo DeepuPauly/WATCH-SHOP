@@ -1,0 +1,287 @@
+{% include 'customer_pages/customer_header.html' %}
+
+<div class="container-fluid">
+  <div class="row">
+    <!-- Side Navigation Bar -->
+    
+    <nav class="col-md-6 col-lg-2 d-md-block sidebar">
+      <div class="bg-holder" style="background-image:url(/static/customerlatesttemplate/assets/img/gallery/store-bg.png);background-position:left bottom;background-size:contain;">
+        <div class="sidebar-sticky">
+          <ul class="nav flex-column">
+            <br><br><br><br><br><br>
+            <div class="for_slidebar_content">
+              <h4>Category</h4>
+            
+              <ul>
+                {% for i in x %}
+                <li><a href="#" class="category-link" data-category="{{ i.Cat_Name }}">{{ i.Cat_Name }}</a></li>                {%endfor%}
+              </ul>
+    
+              <br>
+              <ul>
+                <h4>Sub category</h4>
+                {% for i in y %}
+                <li><a href="#" class="subcategory-link" data-subcategory="{{ i.Subcat_Name }}">{{ i.Subcat_Name }}</a></li>
+                {%endfor%}
+              </ul>
+              <br>
+              <h4>Brands</h4>
+              <ul>
+                {% for i in z %}
+                <li><a href="#" class="brand-link" data-brand="{{ i.Brand_Name }}">{{ i.Brand_Name }}</a></li>
+                {%endfor%}
+              </ul>
+              <br>
+             
+              <!-- <h4>Price Range</h4>
+              <input type="text" id="min_price" placeholder="Min Price">
+              <input type="text" id="max_price" placeholder="Max Price"> -->
+    
+            </div>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    
+    <style>
+      .for_slidebar_content {
+        padding: 20px;
+        transition: padding 0.3s ease-in-out; /* Add transition effect for padding */
+      }
+    
+      .for_slidebar_content h4 {
+        margin-bottom: 10px;
+        color: white;
+      }
+    
+      .for_slidebar_content ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+    
+      .for_slidebar_content ul li {
+        margin-bottom: 10px;
+      }
+    
+      .for_slidebar_content ul li a {
+        color: white;
+        text-decoration: none;
+        transition: color 0.3s ease-in-out; /* Add transition effect for color */
+      }
+    
+      .for_slidebar_content ul li a:hover {
+        color: #ffc107; /* Change color on hover */
+      }
+
+      /* Price filter styling */
+    .for_slidebar_content input[type="text"] {
+      width: 90px;
+      padding: 8px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    
+
+    .for_slidebar_content input[type="text"]:focus {
+      border-color: #000000;
+      outline: none;
+    }
+    </style>
+    
+    
+    <style>
+      .sidebar {
+        background-color: rgba(255, 255, 255, 0.5); /* Background color with 50% transparency */
+        border-right: 2px solid #000000; /* Border color */
+        padding-top: 20px; /* Top padding */
+        padding-bottom: 20px; /* Bottom padding */
+        height: 60rem;
+        width: 16rem;
+      }
+    
+      .nav-link {
+        color: #ffffff; /* Text color */
+        font-size: 18px; /* Font size */
+        padding: 10px 80px; /* Padding */
+        transition: all 0.3s ease-in-out; /* Transition effect */
+      }
+    
+      .nav-link:hover {
+        background-color: #ffffff; /* Background color on hover */
+        color: #212529; /* Text color on hover */
+      }
+      /* .for_slidebar_content{
+        padding-left: 60px;
+      } */
+    </style>
+    
+
+    <!-- Main Content -->
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-0">
+      <br><br><br><br>
+      <style>
+        .sidebar {
+          background-color: transparent; /* Make the sidebar transparent */
+          /* Add other styles as needed */
+        }
+      
+        /* Custom styling for the search button */
+        #searchButton {
+          padding: 0.375rem 0.75rem; /* Adjust padding as needed */
+          font-size: 0.875rem; /* Adjust font size as needed */
+        }
+      
+        .card:hover .card-img-overlay {
+          opacity: 1;
+          visibility: visible;
+        }
+      
+        .card-img-overlay {
+          opacity: 0;
+          visibility: hidden;
+          transition: opacity 0.3s ease-in-out;
+        }
+      
+        .card:hover .card-img-overlay a,
+        .card:hover .card-img-overlay h4,
+        .card:hover .card-img-overlay h6 {
+          display: block;
+        }
+      
+        /* Additional styles */
+        .card:hover {
+          transform: translateY(-15px); /* Move card up on hover */
+        }
+        .card-img {
+        transition: transform 0.3s ease-in-out; /* Add transition effect */
+        }
+
+        .card-img:hover {
+        transform: scale(1.1); /* Enlarge the image on hover */
+        }
+      
+        @media (max-width: 768px) {
+          .col-md-4 {
+            flex: 0 0 100%; /* Set column width to 100% for smaller devices */
+          }
+        }
+      </style>
+      
+      <section class="bg-black py-8 pt-0" id="store">
+        <div class="bg-holder" style="background-image:url(/static/customerlatesttemplate/assets/img/gallery/store-bg.png);background-position:left bottom;background-size:contain;">
+     
+        <!-- No space here -->
+        {% if q %}
+        <!-- Loop of items -->
+        <section class="py-0 pb-6" id="collections">
+          <div class="container">
+            <div class="row h-100">
+              <div class="row">
+                {% for i in q %}
+                
+                <div class="col-sm-3 mb-2 mb-md-0" data-category="{{ i.CAT.Cat_Name }}" data-subcategory="{{ i.SUBCAT.Subcat_Name }}" data-brand="{{ i.BRAND.Brand_Name }}">
+                  <div class="card bg-black text-white p-.5 pb-.5" style="height: 400px;">
+                    <div class="card bg-black text-white p-2 pb-3" style="height: 400px;">
+                      <div style="height: 100%; overflow: hidden;">
+                        <img class="card-img" src="/{{ i.Item_Image }}" alt="..." style="object-fit: cover; width: 100%; height: 100%;" />
+                      </div>
+                      <div class="card-img-overlay bg-dark-gradient d-flex flex-column-reverse align-items-center">
+                        <a class="stretched-link" href="/addtocart/{{ i.id }}"><span style="color: red;">Add to Cart</span></a>
+                        <h4 class="text-light"><span style="color: white;">Rs.{{ i.Item_Price }}</span></h4>
+                        <h6 class="text-primary"><span style="color: white;">{{ i.Item_Desc }}</span></h6>
+                        <h6 class="text-primary"><span style="color: white;">{{ i.BRAND.Brand_Name }}  {{ i.CAT.Cat_Name }} {{ i.SUBCAT.Subcat_Name }} watch</span></h6>
+                        <h4 class="text-primary"><span style="color: white;">{{ i.Item_Name }}</span></h4>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </section>
+        {% else %}
+        <center>
+          <h1 style="font-weight: bold; opacity: 0.7;">NO PRODUCTS</h1>
+        </center>
+        {% endif %}
+      </div>
+      </section>
+    </main>
+  </div>
+</div>
+
+<script>
+  // Function to filter items based on category, subcategory, or brand
+  function filterItems(category, subcategory, brand) {
+    // Get all item cards
+    var items = document.querySelectorAll('.col-sm-3');
+    // Loop through each item
+    items.forEach(function(item) {
+      // Check if item's category, subcategory, or brand matches the selected values or if any value is 'All'
+      var categoryMatch = category === 'All' || item.dataset.category === category;
+      var subcategoryMatch = subcategory === 'All' || item.dataset.subcategory === subcategory;
+      var brandMatch = brand === 'All' || item.dataset.brand === brand;
+
+      // Show item if all conditions are met, otherwise hide it
+      if (categoryMatch && subcategoryMatch && brandMatch) {
+        item.style.display = 'block'; // Show item
+      } else {
+        item.style.display = 'none'; // Hide item
+      }
+    });
+  }
+
+  // Add event listeners to category links
+  document.addEventListener('DOMContentLoaded', function() {
+    var categoryLinks = document.querySelectorAll('.category-link');
+    // Loop through each category link
+    categoryLinks.forEach(function(link) {
+      // Add click event listener
+      link.addEventListener('click', function(event) {
+        event.preventDefault();
+        var category = this.dataset.category; // Get selected category
+        var subcategory = document.querySelector('.subcategory-link.active') ? document.querySelector('.subcategory-link.active').dataset.subcategory : 'All'; // Get selected subcategory, or 'All' if none selected
+        var brand = document.querySelector('.brand-link.active') ? document.querySelector('.brand-link.active').dataset.brand : 'All'; // Get selected brand, or 'All' if none selected
+        filterItems(category, subcategory, brand); // Call filter function
+      });
+    });
+  });
+
+  // Add event listeners to subcategory links
+  document.addEventListener('DOMContentLoaded', function() {
+    var subcategoryLinks = document.querySelectorAll('.subcategory-link');
+    // Loop through each subcategory link
+    subcategoryLinks.forEach(function(link) {
+      // Add click event listener
+      link.addEventListener('click', function(event) {
+        event.preventDefault();
+        var subcategory = this.dataset.subcategory; // Get selected subcategory
+        var category = document.querySelector('.category-link.active') ? document.querySelector('.category-link.active').dataset.category : 'All'; // Get selected category, or 'All' if none selected
+        var brand = document.querySelector('.brand-link.active') ? document.querySelector('.brand-link.active').dataset.brand : 'All'; // Get selected brand, or 'All' if none selected
+        filterItems(category, subcategory, brand); // Call filter function
+      });
+    });
+  });
+
+  // Add event listeners to brand links
+  document.addEventListener('DOMContentLoaded', function() {
+    var brandLinks = document.querySelectorAll('.brand-link');
+    // Loop through each brand link
+    brandLinks.forEach(function(link) {
+      // Add click event listener
+      link.addEventListener('click', function(event) {
+        event.preventDefault();
+        var brand = this.dataset.brand; // Get selected brand
+        var category = document.querySelector('.category-link.active') ? document.querySelector('.category-link.active').dataset.category : 'All'; // Get selected category, or 'All' if none selected
+        var subcategory = document.querySelector('.subcategory-link.active') ? document.querySelector('.subcategory-link.active').dataset.subcategory : 'All'; // Get selected subcategory, or 'All' if none selected
+        filterItems(category, subcategory, brand); // Call filter function
+      });
+    });
+  });
+</script>
+
+

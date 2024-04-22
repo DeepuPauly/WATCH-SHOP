@@ -1,0 +1,343 @@
+{% if request.session.utype == 'admin' %}
+    {% include 'adminpages/admin_header.html' %}
+{% elif  request.session.utype == 'Working Staff' %}
+    {% include 'working_staff_pages/working_staff_header.html' %}
+{% endif %}
+
+{%if q3%}
+<form action="" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+    {% csrf_token %}
+    <h1>UPDATE ITEM</h1>
+    <table class="table text-start align-middle table-bordered table-hover mb-0">
+        <tr>
+            <th>Item Name</th>
+            <td> <input type="text" id="Itemname" required class="form-control" name="Itemname" value="{{q3.Item_Name}}"></td>
+        </tr>
+        <tr>
+            <th>Image</th>
+            <td> <input type="file" id="Photo" required class="form-control" name="Itemimg" value="{{q3.Item_Image}}"></td>
+        </tr>
+        <tr>
+            <th>Price</th>
+            <td> <input type="text" id="Price" required class="form-control" name="Price" value="{{q3.Item_Price}}"></td>
+        </tr>
+        <tr>
+            <th>Category</th>
+           <td> 
+            <select required class="form-control" name="Category">
+                {% comment %} <option value="{{q4.CAT_id}}" selected>{{a1.CAT.Cat_Name}}</option> {% endcomment %}
+                {%for i in q4%}
+                {% if q3.CAT_id == i.id %}
+            <option value="{{i.id}}" selected>{{i.Cat_Name}}</option>
+            {% else %}
+            <option value="{{i.id}}" >{{i.Cat_Name}}</option>
+            {% endif %}
+               {%endfor%}
+            </select>
+        </td>
+        </tr>
+
+        <tr>
+            <th>Subcategory</th>
+           <td> 
+            <select required class="form-control" name="Subcategory">
+                {% comment %} <option value="{{q4.CAT_id}}" selected>{{a1.CAT.Cat_Name}}</option> {% endcomment %}
+                {%for i in q5%}
+                {% if q3.SUBCAT_id == i.id %}
+            <option value="{{i.id}}" selected>{{i.Subcat_Name}}</option>
+            {% else %}
+            <option value="{{i.id}}" >{{i.Subcat_Name}}</option>
+            {% endif %}
+               {%endfor%}
+            </select>
+        </td>
+        </tr>
+        <tr>
+            <th>Brand</th>
+           <td> 
+            <select required class="form-control" name="Brand">
+                {% comment %} <option value="{{q4.CAT_id}}" selected>{{a1.CAT.Cat_Name}}</option> {% endcomment %}
+                {%for i in q6%}
+                {% if q3.BRAND_id == i.id %}
+            <option value="{{i.id}}" selected>{{i.Brand_Name}}</option>
+            {% else %}
+            <option value="{{i.id}}" >{{i.Brand_Name}}</option>
+            {% endif %}
+               {%endfor%}
+            </select>
+        </td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td> <input type="text" id="Price" required class="form-control" name="Description" value="{{q3.Item_Desc}}"></td>
+        </tr>
+        <tr>
+            <td colspan="3" align="center"> <input type="submit" class="btn btn-danger" id="submit" name='update' value='update'></td>
+        </tr>
+</table>
+</form>
+{%else%}
+<form action="" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+    {% csrf_token %}
+    <h1>ADD ITEM</h1>
+    <table class="table text-start align-middle table-bordered table-hover mb-0">
+        <tr>
+            <th>Item Name</th>
+            <td> <input type="text" required class="form-control" id="Itemname" name="Itemname"></td>
+        </tr>
+        <tr>
+            <th>Image</th>
+            <td> <input type="file" required class="form-control" id="Photo" name="Itemimg"></td>
+        </tr>
+        <tr>
+            <th>Price</th>
+            <td> <input type="text" required class="form-control" id="Price" name="Price"></td>
+        </tr>
+        <tr>
+            <th>Category</th>
+           <td> 
+            <select required class="form-control" name="Category">
+                <!-- <option selected>---Select---</option> -->
+                {%for i in q4%}
+            <option value="{{i.id}}">{{i.Cat_Name}}</option>
+               {%endfor%}
+            </select>
+        </td>
+        </tr>
+
+        <tr>
+            <th>Subcategory</th>
+           <td> 
+            <select required class="form-control" name="Subcategory">
+                <!-- <option selected>---Select---</option> -->
+                {%for i in q5%}
+            <option value="{{i.id}}">{{i.Subcat_Name}}</option>
+               {%endfor%}
+            </select>
+        </td>
+        </tr>
+        <tr>
+            <th>Brand</th>
+           <td> 
+            <select required class="form-control" name="Brand">
+                <!-- <option  selected>---Select---</option> -->
+                {%for i in q6%}
+            <option value="{{i.id}}">{{i.Brand_Name}}</option>
+               {%endfor%}
+            </select>
+        </td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td> <input type="text" required class="form-control" id="Price" name="Description"></td>
+        </tr>
+        <tr>
+            <td colspan="3" align="center"> <input type="submit" class="btn btn-danger" id="submit" name='submit'></td>
+        </tr>
+</table>
+</form>
+<div class="card-body" id="div_print">
+    <p id="eliteWristHeading" style="display: none; border-bottom: 2px solid black;">
+        <span style="font-size: 60px;"><b>Elite <span style="color: red;">Wrist</span></b><br>
+        <span style="font-size: small;">Date : {{today_date}} <br>Time : {{current_time}}</span></span>
+    </p>
+    <h1>Item Details</h1>
+<table class="table text-start align-middle table-bordered table-hover mb-0">
+    <thead>
+        <tr>
+            <th>Sl.No</th>
+            <th>Name</th>
+            <th>Image</th>
+            <th>Category</th>
+            <th>Subcategory</th>
+            <th>Brand</th>
+            <th>Price</th>
+            <th>Description</th>
+            <!-- <th>Status</th> -->
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {%for i in q1%}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.Item_Name}}</td>
+            <td><img src="/{{i.Item_Image}}" srcset="" alt="" width="100" height="100"></td>
+            <td>{{i.CAT.Cat_Name}}</td>
+            <td>{{i.SUBCAT.Subcat_Name}}</td>
+            <td>{{i.BRAND.Brand_Name}}</td>
+            <td>{{i.Item_Price}}</td>
+            <td>{{i.Item_Desc}}</td>
+            <!-- <td>{{i.Item_Status}}</td> -->
+            <td><a href="adminupdateitem/{{i.id}}" class="action-buttons">Update</a></td>
+        </tr>
+        {%endfor%}
+    </tbody>
+    {%endif%}
+    </table>
+</div>
+<button onclick="printDiv()" class="btn btn-danger" style="margin-left:800px;margin-top:30px">Download</button>
+
+
+
+<script>
+    // Function to toggle visibility of the heading
+    function toggleHeadingVisibility() {
+        var heading = document.getElementById("eliteWristHeading");
+        if (heading.style.display === "none") {
+            heading.style.display = "block";
+        } else {
+            heading.style.display = "none";
+        }
+    }
+  
+    // Function to hide action buttons
+    function hideActionButtons() {
+        var actionButtons = document.querySelectorAll('.action-buttons');
+        actionButtons.forEach(function(button) {
+            button.style.display = 'none';
+        });
+    }
+  
+    // Function to show action buttons
+    function showActionButtons() {
+        var actionButtons = document.querySelectorAll('.action-buttons');
+        actionButtons.forEach(function(button) {
+            button.style.display = 'inline'; // assuming action buttons were inline
+        });
+    }
+  
+    // Function to print the content
+    function printDiv() {
+        toggleHeadingVisibility(); // Toggle visibility before printing
+        hideActionButtons(); // Hide action buttons before printing
+        var divContents = document.getElementById("div_print").innerHTML;
+        var a = window.open('', '', 'height=500, width=500');
+        a.document.write(divContents);
+        a.document.close();
+        a.print();
+        toggleHeadingVisibility(); // Toggle visibility back after printing
+        showActionButtons(); // Show action buttons after printing
+    }
+  </script>
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        $(function() {
+            $("input[name='Itemname']").on('input', function(e) {
+                $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+    
+            });
+            $("input[name='Lname']").on('input', function(e) {
+                $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+    
+            });
+            $("input[name='Place']").on('input', function(e) {
+                $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+    
+            });
+            $("input[name='City']").on('input', function(e) {
+                $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+    
+            });
+            $("input[name='Price']").on('input', function(e) {
+              $(this).val($(this).val().replace(/[^0-9]/g, ''));
+                
+            });
+            $("input[name='Pincode']").on('input', function(e) {
+              $(this).val($(this).val().replace(/[^0-9]/g, ''));
+                
+            });
+            $("input[name='Description']").on('input', function(e) {
+              $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+  
+          });
+          $("input[name='House']").on('input', function(e) {
+            $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+
+        });
+            $("input[name='Email']").on('input', function(e) {
+                  var re = /([A-Z0-9a-z_-][^@])+?@[^$#<>?]+?\.[\w]{1,}/.test(this.value);
+                    if(!re) {
+                        $('#eerror').show();
+                    } else {
+                        $('#eerror').hide();
+                    }
+            });            
+            $("input[name='Password']").on('input', function(e) {
+                
+              $(this).val($(this).val().replace(/[^0-9A-Za-z@/. ]/g, ''));
+                
+            });
+        });
+        function check() {
+            
+            if (document.getElementById('password').value == document.getElementById('confirm_password').value) {
+                
+                document.getElementById('message').style.color = 'green';
+                document.getElementById('message').innerHTML = 'matching';
+        } else {
+                document.getElementById('message').style.color = 'red';
+                document.getElementById('message').innerHTML = 'not matching';
+        }
+    }
+    </script>
+    
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#search").on("keyup", function () {
+                var searchTerm = $(this).val().toLowerCase();
+                $(".member-row").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(searchTerm) >= 0);
+                });
+            });
+        });
+    </script>
+    
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+    integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+    crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+    integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+    crossorigin="anonymous"></script>
+
+    <script>
+        function validateForm() {
+    var dobValid = validateDOB();
+    var imageValid = validateImage();
+    return dobValid && imageValid;
+}
+
+function validateDOB() {
+    var dobInput = document.getElementById("DOB").value;
+    var dob = new Date(dobInput);
+    var now = new Date();
+    var eighteenYearsAgo = new Date(now.getFullYear() - 18, now.getMonth(), now.getDate());
+    
+    if (dob > eighteenYearsAgo) {
+        alert("You must be at least 18 years old to sign up.");
+        document.getElementById("DOB").value = ""; // Clear the input field
+        return false;
+    }
+    return true;
+}
+
+function validateImage() {
+    var fileInput = document.getElementById('Photo');
+    var filePath = fileInput.value;
+    var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+    if (!allowedExtensions.exec(filePath)) {
+        alert('Invalid file type. Please upload images only with extensions like JPG, JPEG, or PNG.');
+        fileInput.value = ''; // Clear the input field
+        return false;
+    }
+    return true;
+}
+    </script>
+
+{%include 'footer.html' %}

@@ -1,0 +1,45 @@
+{% include 'Field_staff_pages/fstaff_header.html' %}
+
+<div class="table text-start align-middle table-bITEMed table-hover mb-0">
+    <table class="table text-start align-middle table-bITEMed table-hover mb-0">
+        <thead>
+            <tr>
+                <th>Sl No.</th>
+                <th>Assign Date</th>
+                <th>ITEM Amount</th>
+                <th>Name</th>
+                <th>City</th>
+                <th>House</th>
+                <th>District</th>
+                <th>Pincode</th>
+                <th>Place</th>
+                <th>Phone</th>
+                <th>Status</th>
+           
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in q %}
+                <tr>
+                    <td>{{ forloop.counter}}</td>
+                    <td>{{ i.Vassign_Date }}</td>
+                    <td>{{ i.ITEM.Item_Price }}</td>
+                    <td>{{ i.ITEM.CUSTOMER.Customer_Fname }} {{ i.ITEM.CUSTOMER.Customer_Lname }}</td>
+                    <td>{{ i.ITEM.CUSTOMER.Customer_City }}</td>
+                    <td>{{ i.ITEM.CUSTOMER.Customer_House }}</td>
+                    <td>{{ i.ITEM.CUSTOMER.Customer_Dist }}</td>
+                    <td>{{ i.ITEM.CUSTOMER.Customer_Pin }}</td>
+                    <td>{{ i.ITEM.CUSTOMER.Customer_Place }}</td>
+                    <td>{{ i.ITEM.CUSTOMER.Customer_Phone }}</td>
+                    
+                    <td>{{ i.Status }}</td>
+
+                    {% if i.Status == "on the way" or i.Status == "selling" or i.Status == "pending" %}
+                    <td><a href="/fstaff_verify_update_status/{{ i.id }}" >Update Status</a></td>
+                {% endif %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{%include 'footer.html'%}

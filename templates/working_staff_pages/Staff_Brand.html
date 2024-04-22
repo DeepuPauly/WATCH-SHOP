@@ -1,0 +1,71 @@
+{%include 'working_staff_pages/working_staff_header.html' %}
+{%if q2%}
+<form action="" method="post">
+    {% csrf_token %}
+    <h1>UPDATE BRAND</h1>
+    <table>
+        {% comment %} <tr>
+            <th>Category</th> {% endcomment %}
+          <tr>
+                <th>Brand Name</th>
+                <td> <input type="text" id="Categoryname" name="Brandname" value="{{q2.Brand_Name}}"></td>
+            </tr>
+        </tr>  
+        <tr>
+            <th>Brand Description</th>
+            <td><textarea name="Description" id="Description" cols="80" rows="5">{{q2.Brand_Desc}}</textarea></td>
+        </tr>
+<tr>
+    <td> <input type="submit" id="Price" name="update" value="update"></td>
+</tr>
+</table>
+</form>
+{%else%}
+<form action="" method="post">
+    {% csrf_token %}
+    <h1>ADD BRAND</h1>
+    <table>
+        {% comment %} <tr>
+            <th>Category</th> {% endcomment %}
+          <tr>
+                <th>Brand Name</th>
+                <td> <input type="text" id="Categoryname" name="Brandname"></td>
+            </tr>
+        </tr>  
+        <tr>
+            <th>Brand Description</th>
+            <td> <input type="text" id="Price" name="Description"></td>
+        </tr>
+
+<tr>
+    <td> <input type="submit" id="Price" name="submit" value="Submit"></td>
+</tr>
+</table>
+</form>
+<h1>VIEW BRAND</h1>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Sl.No</th>
+            <th>Brand Name</th>
+            <th>Brand Description</th>
+            
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {%for i in q4%}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.Brand_Name}}</td>
+            <td>{{i.Brand_Desc}}</td>
+            <td><a href="adminupdatebrand/{{i.id}}">Update</a></td>
+        </tr>
+    
+    {%endfor%}
+        
+    </tbody>
+    {%endif%}
+    </table>
+{%include 'footer.html' %}

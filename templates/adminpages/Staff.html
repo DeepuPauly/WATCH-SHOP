@@ -1,0 +1,410 @@
+{%include 'adminpages/admin_header.html' %}
+{%if q4%}
+<form action="" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+    {% csrf_token %}
+    <h1>UPDATE STAFF</h1>
+    <table class="table text-start align-middle table-bordered table-hover mb-0">
+        
+        <tr>
+        <th>First Name</th> 
+        <td> <input type="text" id="Fname" required class="form-control" name="Fname" value="{{q4.Staff_Fname}}"></td>
+        </tr>
+        <tr>
+        <th>Last Name</th> 
+        <td> <input type="text" id="Lname" required class="form-control" name="Lname" value="{{q4.Staff_Lname}}"></td>
+
+        </tr>
+
+
+        <tr>
+        <th>Phone Number</th> 
+        <td> <input type="text" id="Number" required class="form-control" name="Number" value="{{q4.Staff_Phone}}"></td>
+
+        </tr>
+        <tr>
+        <th>House</th> 
+        <td> <input type="text" id="House" required class="form-control" name="House" value="{{q4.Staff_House}}"></td>
+
+        </tr>
+        <tr>
+        <th>District</th> 
+        <td> <input type="text" id="District" required class="form-control" name="District" value="{{q4.Staff_Dist}}"></td>
+
+        </tr>
+        <tr>
+        <th>City</th> 
+        <td> <input type="text" id="City" required class="form-control" name="City" value="{{q4.Staff_City}}"></td>
+        </tr>
+
+        <tr>
+        <th>Pincode</th> 
+        <td> <input type="text" id="Pincode" required class="form-control" name="Pincode" value="{{q4.Staff_Pin}}"></td>
+
+        </tr>
+
+        <tr>
+        <th>Place</th> 
+        <td> <input type="text" id="Place" required class="form-control" name="Place" value="{{q4.Staff_Place}}"></td>
+
+        </tr>
+        <tr>
+        <th>DOB</th> 
+        <td> <input type="date" id="DOB" onchange="validateDOB()" name="DOB" required class="form-control" maxlength="{{q4.Staff_DOB}}" value="{{q4.Staff_DOB}}"></td>
+
+        </tr>
+        <tr>
+        <th>Gender</th>
+
+
+        {% if q4.Staff_Gender == 'Male' %}
+        <td><input type="radio" name="Gender" value="Male" checked>Male
+        <input type="radio" name="Gender" value="Female" >Female
+        <input type="radio" name="Gender" value="Others" >Others</td>
+
+        {% elif q4.Staff_Gender == 'Female' %}
+        <td><input type="radio" name="Gender" value="Male" >Male
+            <input type="radio" name="Gender" value="Female" checked >Female
+            <input type="radio" name="Gender" value="Others" >Others</td>
+
+        {% else %}
+        <td><input type="radio" name="Gender" value="Male" >Male
+            <input type="radio" name="Gender" value="Female"  >Female
+            <input type="radio" name="Gender" value="Others" checked>Others</td>
+
+        {%endif%}
+
+        </tr>
+        <tr>
+        <th>Type</th> 
+        <td>
+            <select name="Type" id="" required class="form-control" value="{{q4.Staff_Type}}">
+                    <option value="Working Staff">Working Staff</option>
+                <option value="Field Staff">Field Staff</option>
+                </select>
+
+        </td>
+
+
+        </tr>
+        <tr>
+            <th>Photo</th> 
+            <td> <input type="file" id="Photo" required class="form-control" name="Photo" value="{{q4.Staff_Photo}}"></td>
+            
+            </tr>
+                            
+
+
+            
+<tr>
+<td colspan="2" align="center"> <input type="submit" id="submit" name="update" class="btn btn-danger" value="update"></td>
+</tr>
+</table>
+</form>
+{%else%}
+<form action="" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+    {% csrf_token %}
+    <h1>ADD STAFF</h1>
+    <table class="table text-start align-middle table-bordered table-hover mb-0">
+        <tr>
+            <th>Username</th> 
+            <td> <input type="Email" id="Username" required class="form-control" name="Username"></td>
+            <tr>
+                <tr>
+                    <th>Password</th> 
+                    <td> <input type="password" id="password" required class="form-control" name="password"></td>
+                    <tr>
+  <tr>
+    <th>First Name</th> 
+    <td> <input type="text" id="Fname" required class="form-control" name="Fname"></td>
+    <tr>
+        <th>Last Name</th> 
+    <td> <input type="text" id="Lname" required class="form-control" name="Lname"></td>
+      
+    </tr>
+    </tr>
+    
+<tr>
+    <th>Phone Number</th> 
+<td> <input type="text" id="Number" maxlength="10" required class="form-control" name="Number"></td>
+  
+</tr>
+<tr>
+    <th>House</th> 
+<td> <input type="text" id="House" required class="form-control" name="House"></td>
+  
+</tr>
+    <tr>
+        <th>District</th> 
+        <td> <input type="text" id="District" required class="form-control" name="District"></td>
+      
+        </tr>
+        <tr>
+            <th>City</th> 
+            <td> <input type="text" id="City" required class="form-control" name="City"></td>
+        </tr>
+        
+        <tr>
+            <th>Pincode</th> 
+            <td> <input type="text" id="Pincode" required class="form-control" maxlength="6" name="Pincode"></td>
+          
+            </tr>
+
+<tr>
+            <th>Place</th> 
+            <td> <input type="text" id="Place" required class="form-control" name="Place"></td>
+          
+            </tr>
+            <tr>
+                <th>DOB</th> 
+                <td> <input type="date" id="DOB" onchange="validateDOB()" required class="form-control" name="DOB"></td>
+              
+                </tr>
+                <tr>
+                    <th>Gender</th>
+                    <td><input required type="radio" name="Gender" value="Male">Male
+                    <input required type="radio" name="Gender" value="Female">Female
+                    <input required type="radio" name="Gender" value="Others">Others</td>
+                </tr>
+                    <tr>
+                        <th>Type</th> 
+                        <td>
+                            <select name="Type" required class="form-control"  id="">
+                                <option value="">-------------Select-----------</option>
+                                 <option value="Working Staff">Working Staff</option>
+                                <option value="Field Staff">Field Staff</option>
+                             </select>
+
+                        </td>
+                        
+                      
+                        </tr>
+                        <tr>
+                            <th>Photo</th> 
+                            <td> <input type="file" required class="form-control" id="Photo" name="Photo"></td>
+                          
+                            </tr>
+       
+<tr>
+<td colspan="2" align="center"> <input type="submit" class="btn btn-danger" id="submit" name="submit"></td>
+</tr>
+</table>
+</form>
+<div class="card-body" id="div_print">
+    <p id="eliteWristHeading" style="display: none; border-bottom: 2px solid black;">
+        <span style="font-size: 60px;"><b>Elite <span style="color: red;">Wrist</span></b><br>
+        <span style="font-size: small;">Date : {{today_date}} <br>Time : {{current_time}}</span></span>
+    </p>
+<table class="table text-start align-middle table-bordered table-hover mb-0">
+    <thead>
+        <tr>
+            <th>Sl.No</th>
+            <th>Photo</th>
+            <th>Username</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>House Name</th>
+            <th>Place</th>
+            <th>City</th>
+            <th>District</th>
+            <th>Pincode</th>
+            <th>Phone Number</th>
+            <th>DOB</th>
+            <th>Gender</th>
+            <th>Status</th>
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {%for i in q3%}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td><img src="/{{i.Staff_Photo}}" alt="" srcset="" width="100px"></td>
+            <td>{{i.USERNAME.Username}}</td>
+            <td>{{i.Staff_Fname}}</td>
+            <td>{{i.Staff_Lname}}</td>
+            <td>{{i.Staff_House}}</td>
+            <td>{{i.Staff_Place}}</td>
+            <td>{{i.Staff_City}}</td>
+            <td>{{i.Staff_Dist}}</td>
+            <td>{{i.Staff_Pin}}</td>
+            <td>{{i.Staff_Phone}}</td>
+            <td>{{i.Staff_DOB}}</td>
+            <td>{{i.Staff_Gender}}</td>
+            <td>{{i.Staff_Status}}</td>
+            <td><a  href="adminupdatestaff/{{i.id}}" class="action-buttons">Update</a></td>
+
+            {% if i.Staff_Status == "active" %}
+
+            <td><a  href="/admin_inactive_staff/{{i.USERNAME_id}}" class="action-buttons">In active</a></td>
+
+            {% elif i.Staff_Status == "inactive" %}
+
+            <td><a  href="/admin_active_staff/{{i.USERNAME_id}}" class="action-buttons">Active</a></td>
+            {% endif %}
+        </tr>
+        {%endfor%}
+    </tbody>
+    {%endif%}
+    </table>
+</div>
+<button onclick="printDiv()" class="btn btn-danger" style="margin-left:800px;margin-top:30px">Download</button>
+
+
+<script>
+    // Function to toggle visibility of the heading
+    function toggleHeadingVisibility() {
+        var heading = document.getElementById("eliteWristHeading");
+        if (heading.style.display === "none") {
+            heading.style.display = "block";
+        } else {
+            heading.style.display = "none";
+        }
+    }
+  
+    // Function to hide action buttons
+    function hideActionButtons() {
+        var actionButtons = document.querySelectorAll('.action-buttons');
+        actionButtons.forEach(function(button) {
+            button.style.display = 'none';
+        });
+    }
+  
+    // Function to show action buttons
+    function showActionButtons() {
+        var actionButtons = document.querySelectorAll('.action-buttons');
+        actionButtons.forEach(function(button) {
+            button.style.display = 'inline'; // assuming action buttons were inline
+        });
+    }
+  
+    // Function to print the content
+    function printDiv() {
+        toggleHeadingVisibility(); // Toggle visibility before printing
+        hideActionButtons(); // Hide action buttons before printing
+        var divContents = document.getElementById("div_print").innerHTML;
+        var a = window.open('', '', 'height=500, width=500');
+        a.document.write(divContents);
+        a.document.close();
+        a.print();
+        toggleHeadingVisibility(); // Toggle visibility back after printing
+        showActionButtons(); // Show action buttons after printing
+    }
+  </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        $(function() {
+            $("input[name='Fname']").on('input', function(e) {
+                $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+    
+            });
+            $("input[name='Lname']").on('input', function(e) {
+                $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+    
+            });
+            $("input[name='Place']").on('input', function(e) {
+                $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+    
+            });
+            $("input[name='City']").on('input', function(e) {
+                $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+    
+            });
+            $("input[name='Number']").on('input', function(e) {
+              $(this).val($(this).val().replace(/[^0-9]/g, ''));
+                
+            });
+            $("input[name='Pincode']").on('input', function(e) {
+              $(this).val($(this).val().replace(/[^0-9]/g, ''));
+                
+            });
+            $("input[name='Dist']").on('input', function(e) {
+              $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+  
+          });
+          $("input[name='House']").on('input', function(e) {
+            $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+
+        });
+            $("input[name='Email']").on('input', function(e) {
+                  var re = /([A-Z0-9a-z_-][^@])+?@[^$#<>?]+?\.[\w]{1,}/.test(this.value);
+                    if(!re) {
+                        $('#eerror').show();
+                    } else {
+                        $('#eerror').hide();
+                    }
+            });            
+            $("input[name='Password']").on('input', function(e) {
+                
+              $(this).val($(this).val().replace(/[^0-9A-Za-z@/. ]/g, ''));
+                
+            });
+        });
+        function check() {
+            
+            if (document.getElementById('password').value == document.getElementById('confirm_password').value) {
+                
+                document.getElementById('message').style.color = 'green';
+                document.getElementById('message').innerHTML = 'matching';
+        } else {
+                document.getElementById('message').style.color = 'red';
+                document.getElementById('message').innerHTML = 'not matching';
+        }
+    }
+    </script>
+    
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#search").on("keyup", function () {
+                var searchTerm = $(this).val().toLowerCase();
+                $(".member-row").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(searchTerm) >= 0);
+                });
+            });
+        });
+    </script>
+    
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+    integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+    crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+    integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+    crossorigin="anonymous"></script>
+
+    <script>
+        function validateForm() {
+    var dobValid = validateDOB();
+    var imageValid = validateImage();
+    return dobValid && imageValid;
+}
+
+function validateDOB() {
+    var dobInput = document.getElementById("DOB").value;
+    var dob = new Date(dobInput);
+    var now = new Date();
+    var eighteenYearsAgo = new Date(now.getFullYear() - 18, now.getMonth(), now.getDate());
+    
+    if (dob > eighteenYearsAgo) {
+        alert("You must be at least 18 years old to sign up.");
+        document.getElementById("DOB").value = ""; // Clear the input field
+        return false;
+    }
+    return true;
+}
+
+function validateImage() {
+    var fileInput = document.getElementById('Photo');
+    var filePath = fileInput.value;
+    var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+    if (!allowedExtensions.exec(filePath)) {
+        alert('Invalid file type. Please upload images only with extensions like JPG, JPEG, or PNG.');
+        fileInput.value = ''; // Clear the input field
+        return false;
+    }
+    return true;
+}
+    </script>
+{%include 'footer.html'%}

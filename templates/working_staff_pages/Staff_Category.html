@@ -1,0 +1,76 @@
+{%include 'working_staff_pages/working_staff_header.html'%}
+{%if q3%}
+<center>
+<form action="" method="post">
+    {% csrf_token %} 
+    
+    <table>
+        
+    
+          <tr>
+                <th>Category Name</th>
+                <td> <input type="text" id="Categoryname" class="form-control" required name="Categoryname" value="{{q3.Cat_Name}}"></td>
+            </tr>
+        </tr>  
+        <tr>
+            <th>Category Description</th>
+            <td><textarea name="Description" id="Description" class="form-control" required cols="80" rows="5">{{q3.Cat_Desc}}</textarea></td>
+        </tr>
+
+<tr>
+    <td> <input type="submit" id="Price" class="btn btn-danger" name="update" value="update" ></td>
+</tr>
+</table>
+
+</form>
+</center>
+{%else%}
+<center>
+<form action="" method="post">
+    {% csrf_token %} 
+  
+    <table>
+        
+    
+          <tr>
+                <th>Category Name</th>
+                <td> <input type="text" id="Categoryname" class="form-control" required name="Categoryname"></td>
+            </tr>
+        </tr>  
+        <tr>
+            <th>Category Description</th>
+            <td> <input type="text" id="Price" class="form-control" required name="Description"></td>
+        </tr>
+
+<tr>
+    <td> <input type="submit" id="Price" class="btn btn-danger" name="submit" value="Submit"></td>
+</tr>
+</table>
+
+</form>
+</center>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Sl.No</th>
+            <th>Category Name</th>
+            <th>Category Description</th>
+            
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {%for i in q1%}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.Cat_Name}}</td>
+            <td>{{i.Cat_Desc}}</td>
+            <td><a href="staffupdatecategory/{{i.id}}">Update</a></td>
+        </tr>
+    
+    {%endfor%}
+    </tbody>
+    {%endif%}
+    </table>
+{%include 'footer.html' %}

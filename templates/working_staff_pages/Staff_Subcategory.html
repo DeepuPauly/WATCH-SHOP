@@ -1,0 +1,72 @@
+{%include 'working_staff_pages/working_staff_header.html'%}
+{%if q3%}
+<form action="" method="post">
+    {% csrf_token %}
+    <h1>UPDATE SUBCATEGORY</h1>
+    <table>
+        {% comment %} <tr>
+            <th>Category</th> {% endcomment %}
+          <tr>
+                <th>Subcategory Name</th>
+                <td> <input type="text" id="Subcategoryname" name="Subcategoryname"value="{{q3.Subcat_Name}}" ></td>
+            </tr>
+        </tr>  
+        <tr>
+            <th>Subcategory Description</th>
+            <td><textarea name="Description" id="Description" cols="80" rows="5">{{q3.Subcat_Desc}}</textarea></td>
+        </tr>
+
+<tr>
+    <td> <input type="submit" id="Price" name="update" value="update"></td>
+</tr>
+</table>
+</form>
+{%else%}
+<form action="" method="post">
+    {% csrf_token %}
+    <h1>ADD SUBCATEGORY</h1>
+    <table>
+        {% comment %} <tr>
+            <th>Category</th> {% endcomment %}
+          <tr>
+                <th>Subcategory Name</th>
+                <td> <input type="text" id="Subcategoryname" name="Subcategoryname"></td>
+            </tr>
+        </tr>  
+        <tr>
+            <th>Subcategory Description</th>
+            <td> <input type="textarea" id="Price" name="Description"></td>
+        </tr>
+
+<tr>
+    <td> <input type="submit" id="Price" name="submit" value="Submit"></td>
+</tr>
+</table>
+</form>
+<h1>VIEW SUBCATEGORY</h1>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Sl.No</th>
+            <th>Subcategory Name</th>
+            <th>Subcategory Description</th>
+            
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {%for i in q1%}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{i.Subcat_Name}}</td>
+            <td>{{i.Subcat_Desc}}</td>
+            <td><a href="staffupdatesubcategory/{{i.id}}">Update</a></td>
+        </tr>
+    
+    {%endfor%}
+        
+    </tbody>
+    {%endif%}
+    </table>
+{%include 'footer.html' %}

@@ -1,0 +1,152 @@
+{% include 'customer_pages/customer_header.html' %}
+<div class="bg-holder" style="background-image:url(/static/customerlatesttemplate/assets/img/gallery/store-bg.png);background-position:left bottom;background-size:static;">
+    <br><br><br><br>
+
+
+    <div class="card-container">
+        {% for i in qi %}
+        <div class="card">
+            <div class="card-header">
+                <h3>{{ i.Item.Item_Name }}</h3>
+                <p><span style="color: black;">Category: {{ i.Item.CAT.Cat_Name }}</span></p>
+                <p><span style="color: black;">Subcategory: {{ i.Item.SUBCAT.Subcat_Name }}</span></p>
+                <p><span style="color: black;">Brand: {{ i.Item.BRAND.Brand_Name }}</span></p>
+            </div>
+            <div class="card-body">
+                <img src="/{{ i.Item.Item_Image }}" alt="{{ i.Item.Item_Name }}">
+                <p><span style="color: black;">{{ i.Item.Item_Desc }}</span></p>
+                <p><span style="color: black;">Price: {{ i.Item.Item_Price }}</span></p>
+                <div class="buttons">
+                    <a class="btn btn-primary" href="/cust_add_item_review/{{ i.Item_id }}">Add Review</a>
+                    
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    
+    </div>
+
+
+
+
+
+
+
+
+    <style>
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+    
+        .card {
+            width: 300px;
+            margin-bottom: 20px;
+            border: 1px solid #333131;
+            border-radius: 5px;
+            box-shadow: 0px 0px 5px 0px rgba(122, 119, 119, 0.1);
+        }
+    
+        .card-header {
+            background-color: #B98F7D;
+            padding: 10px;
+            border-bottom: 1px solid #474444;
+        }
+    
+        .card-header h3 {
+            margin: 0;
+            font-size: 20px;
+        }
+    
+        .card-body {
+            padding: 10px;
+        }
+    
+        .card-body img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+    
+        .card-body p {
+            margin-bottom: 10px;
+        }
+    
+        .buttons {
+            margin-top: 10px;
+            text-align: right;
+        }
+    
+        .btn {
+            padding: 5px 10px;
+            font-size: 14px;
+            text-decoration: none;
+            color: #ffffff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+    
+        .btn-primary {
+            background-color: #B98F7D;
+        }
+    
+        .btn-primary:hover {
+            background-color: red;
+        }
+    </style>
+    
+    
+    <style>
+         .custom-table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid #dee2e6;
+            border-radius: 0.25rem;
+            overflow: hidden;
+        }
+    
+        .custom-table th, .custom-table td {
+            padding: 0.75rem;
+            vertical-align: middle;
+            border-bottom: 1px solid #dee2e6;
+        }
+    
+        .custom-table th {
+            background-color: #505255;
+            border-top: 1px solid #919496;
+        }
+    
+        .custom-table tbody tr:hover {
+            background-color: #b9b9b9;
+        }
+        .container {
+            padding-top: 20px; /* Adjust top padding as needed */
+            padding-bottom: 20px; /* Adjust bottom padding as needed */
+        }
+    
+        .table {
+            width: 100%; /* Set table width to 100% */
+            max-width: 900px; /* Limit the maximum width of the table */
+            margin: 0 auto; /* Center the table horizontally */
+        }
+    
+        .table td {
+            padding: 10px; /* Add padding to table cells */
+        }
+    
+        .form-control {
+            width: 100%; /* Set input width to 100% */
+            height: auto; /* Allow input height to adjust based on content */
+        }
+    
+        .btn {
+            width: 100%; /* Set button width to 100% */
+            padding: 10px; /* Add padding to button */
+        }
+    </style>

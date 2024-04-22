@@ -1,0 +1,56 @@
+{%include 'working_staff_pages/working_staff_header.html'%}
+<form action="" method="post">
+    <h1>ADD ITEM</h1>
+    <table>
+        <tr>
+            <th>Item Name</th>
+            <td> <input type="text" id="Itemname" name="Itemname"></td>
+        </tr>
+        <tr>
+            <th>Image</th>
+            <td> <input type="file" id="Itemimg" name="Itemimg"></td>
+        </tr>
+        <tr>
+            <th>Price</th>
+            <td> <input type="text" id="Price" name="Price"></td>
+        </tr>
+        <tr>
+            <th>Category</th>
+            <select name="Category" id="Category">
+                <option value="">Select</option>
+                <option value="">Men</option>
+                <option value="">Women</option>
+            </select></td>
+        </tr>
+        <tr>
+            <th>Subacetgory</th>
+            <td>
+            <select name="Subcategory" >
+                <option value="">Select</option>
+                <option value="">Vintage Watches</option>
+                <option value="">Luxury Watches</option>
+                <option value="">Sports Watches</option>
+            </select></td>
+        </tr>
+        <tr>
+            <th>Brand</th>
+            <td>
+            <select name="Brand" >
+                <option value="">Select</option>
+                <option value=""> Rolex </option>
+                <option value=""> Cartier</option>
+                <option value=""> Calvin Klein</option>
+            </select></td>
+        </tr>
+        <tr>
+            <th>Item Description</th>
+            <td> <input type="text"  name="Itemdescription"></td>
+        </tr>
+        
+        <tr>
+            <td> <input type="submit" id="Price" name="submit" value="Submit"></td>
+        </tr>
+     
+</table>
+</form>
+{%include 'footer.html' %}

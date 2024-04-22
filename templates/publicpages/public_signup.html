@@ -1,0 +1,392 @@
+{%include 'publicpages/publicheader.html'%}
+<!-- <!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Transparent Login Form UI</title>
+    <link rel="stylesheet" href="style.css">
+   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  </head>
+  <body> -->
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700|Poppins:400,500&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+}
+.bg-img{
+  background-color: red;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+}
+.bg-img:after{
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(84, 77, 77, 0.7);
+}
+.content{
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  z-index: 999;
+  text-align: center;
+  padding: 60px 32px;
+  width: 370px;
+  transform: translate(-50%,-50%);
+  background: rgba(255,255,255,0.04);
+  box-shadow: -1px 4px 28px 0px rgba(0,0,0,0.75);
+}
+.content header{
+  color: white;
+  font-size: 33px;
+  font-weight: 600;
+  margin: 0 0 35px 0;
+  font-family: 'Montserrat',sans-serif;
+}
+.field{
+  position: relative;
+  height: 45px;
+  width: 100%;
+  display: flex;
+  background: rgba(255,255,255,0.94);
+}
+.field span{
+  color: #222;
+  width: 40px;
+  line-height: 45px;
+}
+.field input{
+  height: 100%;
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #222;
+  font-size: 16px;
+  font-family: 'Poppins',sans-serif;
+}
+.space{
+  margin-top: 16px;
+}
+.show{
+  position: absolute;
+  right: 13px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #222;
+  display: none;
+  cursor: pointer;
+  font-family: 'Montserrat',sans-serif;
+}
+.pass-key:valid ~ .show{
+  display: block;
+}
+.pass{
+  text-align: left;
+  margin: 10px 0;
+}
+.pass a{
+  color: white;
+  text-decoration: none;
+  font-family: 'Poppins',sans-serif;
+}
+.pass:hover a{
+  text-decoration: underline;
+}
+.field input[type="submit"]{
+  background: #3498db;
+  border: 1px solid #2691d9;
+  color: white;
+  font-size: 18px;
+  letter-spacing: 1px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'Montserrat',sans-serif;
+}
+.field input[type="submit"]:hover{
+  background: #2691d9;
+}
+.login{
+  color: white;
+  margin: 20px 0;
+  font-family: 'Poppins',sans-serif;
+}
+.links{
+  display: flex;
+  cursor: pointer;
+  color: white;
+  margin: 0 0 20px 0;
+}
+.facebook,.instagram{
+  width: 100%;
+  height: 45px;
+  line-height: 45px;
+  margin-left: 10px;
+}
+.facebook{
+  margin-left: 0;
+  background: #4267B2;
+  border: 1px solid #3e61a8;
+}
+.instagram{
+  background: #E1306C;
+  border: 1px solid #df2060;
+}
+.facebook:hover{
+  background: #3e61a8;
+}
+.instagram:hover{
+  background: #df2060;
+}
+.links i{
+  font-size: 17px;
+}
+i span{
+  margin-left: 8px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  font-size: 16px;
+  font-family: 'Poppins',sans-serif;
+}
+.signup{
+  font-size: 15px;
+  color: white;
+  font-family: 'Poppins',sans-serif;
+}
+.signup a{
+  color: #3498db;
+  text-decoration: none;
+}
+.signup a:hover{
+  text-decoration: underline;
+}
+</style>
+    <div class="bg-img">
+      <div class="content">
+        <header>Signup Form</header>
+        <form action="" method="post">
+            {% csrf_token %}
+          <div class="field">
+            <span class="fa fa-user"></span>
+            <input type="text" required placeholder="Email or Phone" name="Username">
+          </div>
+          <div class="field space">
+            <span class="fa fa-lock"></span>
+            <input type="password" class="pass-key" required placeholder="Password" name="Password">
+            <span class="show">SHOW</span>
+          </div>
+          <br>
+          <div class="field">
+            <span class="fa fa-user"></span>
+            <input type="text" required placeholder="Fisrt name" name="Fname">
+          </div>
+          <div class="field space">
+            <span class="fa fa-user"></span>
+            <input type="text" id="Lname" required placeholder="Last name" name="Lname">
+          </div>
+          <br>
+          <!-- <div class="field space"> -->
+            <span class="fa fa-user"></span>
+            <td><input type="radio" name="Gender" value="Male">Male
+                <input type="radio" name="Gender" value="Female">Female
+                <input type="radio" name="Gender" value="Others">Others</td>
+          <!-- </div> -->
+          <div class="field space">
+            <span class="fa fa-user"></span>
+            <input type="text" id="Place" required placeholder="Place" name="Place">
+          </div>
+          <div class="field space">
+            <span class="fa fa-user"></span>
+            <input type="text" id="City" required placeholder="City"  name="City">
+          </div>
+          <div class="field space">
+            <span class="fa fa-user"></span>
+            <input type="text" id="House"  required placeholder="House" name="House">
+          </div>
+          <div class="field space">
+            <span class="fa fa-user"></span>
+            <input type="text" id="Dist"  required placeholder="Dist" name="Dist">
+          </div>
+          <div class="field space">
+            <span class="fa fa-user"></span>
+            <input type="text" id="Pin"   required placeholder="Pin" name="Pin" maxlength="6">
+          </div>
+          <div class="field space">
+            <span class="fa fa-user"></span>
+            <input type="text" id="Phone"  required placeholder="Phone" name="Phone" maxlength="10">
+          </div>
+          <div class="field space">
+            <span class="fa fa-user"></span>
+            <input type="date" id="DOB"  onchange="validateDOB()" name="DOB">
+          </div>
+          <br>
+          <div class="field">
+            <input type="submit" value="SIGN UP" name="submit">
+          </div>
+        </form>
+    
+    
+          <!-- <div class="pass">
+            <a href="#">Forgot Password?</a>
+          </div> -->
+          <br>
+          <!-- <div class="field">
+            <input type="submit" value="LOGIN" name="submit">
+          </div> -->
+        </form>
+        <!-- <div class="login">Or login with</div> -->
+        <!-- <div class="links">
+          <div class="facebook">
+            <i class="fab fa-facebook-f"><span>Facebook</span></i>
+          </div>
+          <div class="instagram">
+            <i class="fab fa-instagram"><span>Instagram</span></i>
+          </div>
+        </div> -->
+        <br>
+        <!-- <div class="signup">Don't have account?
+          <a href="signup">Signup Now</a>
+        </div> -->
+      </div>
+    </div>
+
+<script>
+  function validateForm() {
+  var dobValid = validateDOB();
+  var imageValid = validateImage();
+  return dobValid && imageValid;
+}
+
+function validateDOB() {
+  var dobInput = document.getElementById("DOB").value;
+  var dob = new Date(dobInput);
+  var now = new Date();
+  var eighteenYearsAgo = new Date(now.getFullYear() - 18, now.getMonth(), now.getDate());
+  
+  if (dob > eighteenYearsAgo) {
+      alert("You must be at least 18 years old to sign up.");
+      document.getElementById("DOB").value = ""; // Clear the input field
+      return false;
+  }
+  return true;
+}
+
+function validateImage() {
+  var fileInput = document.getElementById('Photo');
+  var filePath = fileInput.value;
+  var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+  if (!allowedExtensions.exec(filePath)) {
+      alert('Invalid file type. Please upload images only with extensions like JPG, JPEG, or PNG.');
+      fileInput.value = ''; // Clear the input field
+      return false;
+  }
+  return true;
+}
+  </script>
+
+    <script>
+      const pass_field = document.querySelector('.pass-key');
+      const showBtn = document.querySelector('.show');
+      showBtn.addEventListener('click', function(){
+       if(pass_field.type === "password"){
+         pass_field.type = "text";
+         showBtn.textContent = "HIDE";
+         showBtn.style.color = "#3498db";
+       }else{
+         pass_field.type = "password";
+         showBtn.textContent = "SHOW";
+         showBtn.style.color = "#222";
+       }
+      });
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        $(function() {
+            $("input[name='Fname']").on('input', function(e) {
+                $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+    
+            });
+            $("input[name='Lname']").on('input', function(e) {
+                $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+    
+            });
+            $("input[name='place']").on('input', function(e) {
+                $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+    
+            });
+            $("input[name='City']").on('input', function(e) {
+                $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+    
+            });
+            $("input[name='Phone']").on('input', function(e) {
+              $(this).val($(this).val().replace(/[^0-9]/g, ''));
+                
+            });
+            $("input[name='Pin']").on('input', function(e) {
+              $(this).val($(this).val().replace(/[^0-9]/g, ''));
+                
+            });
+            $("input[name='Dist']").on('input', function(e) {
+              $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+  
+          });
+          $("input[name='House']").on('input', function(e) {
+            $(this).val($(this).val().replace(/[^A-Za-z ]/g, ''));
+
+        });
+            $("input[name='Email']").on('input', function(e) {
+                  var re = /([A-Z0-9a-z_-][^@])+?@[^$#<>?]+?\.[\w]{1,}/.test(this.value);
+                    if(!re) {
+                        $('#eerror').show();
+                    } else {
+                        $('#eerror').hide();
+                    }
+            });            
+            $("input[name='Password']").on('input', function(e) {
+                
+              $(this).val($(this).val().replace(/[^0-9A-Za-z@/. ]/g, ''));
+                
+            });
+        });
+        function check() {
+            
+            if (document.getElementById('password').value == document.getElementById('confirm_password').value) {
+                
+                document.getElementById('message').style.color = 'green';
+                document.getElementById('message').innerHTML = 'matching';
+        } else {
+                document.getElementById('message').style.color = 'red';
+                document.getElementById('message').innerHTML = 'not matching';
+        }
+    }
+    </script>
+    
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#search").on("keyup", function () {
+                var searchTerm = $(this).val().toLowerCase();
+                $(".member-row").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(searchTerm) >= 0);
+                });
+            });
+        });
+    </script>
+    
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+    integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+    crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+    integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+    crossorigin="anonymous"></script>
+
+ {%include 'publicpages/public_footer.html'%} 

@@ -1,0 +1,39 @@
+{% if request.session.utype == 'admin' %}
+    {% include 'adminpages/admin_header.html' %}
+{% elif  request.session.utype == 'Working Staff' %}
+    {% include 'working_staff_pages/working_staff_header.html' %}
+{% endif %}
+
+</table>
+<div class="table text-start align-middle table-bordered table-hover mb-0">
+    <div class="table text-start align-middle table-bordered table-hover mb-0">
+      <div class="table text-start align-middle table-bordered table-hover mb-0">
+        <div class="table text-start align-middle table-bordered table-hover mb-0">
+          <h4 class="card-title">Review Details</h4>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                    <th>Sl.No</th>
+                    <th>Customer</th>
+                    <th>Item</th>
+                    <th>Image</th>
+                    <th>Review</th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+          
+                {%for i in q3%}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{i.CUSTOMER.Customer_Fname}} {{i.CUSTOMER.Customer_Lname}}</td>
+                    <td>{{i.ITEM.Item_Name}}</td>
+                    <td><img src="{{i.ITEM.Item_Image}}" width="100px" height="100px" alt=""></td>
+                    <td>{{i.Review_Desc}}</td>
+                </tr>
+                {%endfor%}
+ 
+</tbody>
+   
+    {%include 'footer.html'%}

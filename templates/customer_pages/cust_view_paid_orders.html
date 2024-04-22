@@ -1,0 +1,88 @@
+{% include 'customer_pages/customer_header.html' %}
+
+
+<div class="bg-holder" style="background-image:url(/static/customerlatesttemplate/assets/img/gallery/store-bg.png);background-position:left bottom;background-size:static;">
+
+<br><br><br><br><br><br>
+{% if orders %}
+<div class="container">
+    <table class="table ">
+        <thead class="thead-dark">
+            <tr>
+                <th>Bill No</th>
+                <th>Customer Name</th>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>Delivery Address</th>
+                <th>Status</th>
+                <th>Products</th>
+                <th><input type="hidden"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in orders %}
+            <tr>
+                <td>{{ i.Bill_No }}</td>
+                <td>{{ i.CART_MASTER.CUSTOMER.Customer_Fname }}</td>
+                <td>{{ i.Order_Date }}</td>
+                <td>{{ i.Order_Amount }}</td>
+                <td>
+                    <ul class="list-unstyled">
+                        <li>{{ i.A_Fname }}</li>
+                        <li>{{ i.A_House }}</li>
+                        <li>{{ i.A_City }}</li>
+                        <li>{{ i.A_Dist }}</li>
+                        <li>{{ i.A_Pin }}</li>
+                        <li>{{ i.A_Phone }}</li>
+                    </ul>
+                </td>
+                <td>{{ i.Order_Status }}</td>
+                <td><a class="btn btn-danger" href="cust_view_orderd_items/{{i.id}}">Products</a></td>
+                {% if i.Order_Status == "paid" %}
+                    <td><a class="btn btn-danger" href="cust_view_single_product_bill/{{i.id}}">Invoice</a></td>
+                    {% endif %}
+                    
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{%else%}
+<center>
+    <h1 style="font-weight: bold; opacity: 0.7;">NO ORDERS YET</h1>
+    </center>
+{%endif%}
+<br><br><br><br><br><br>
+<style>
+  .table {
+    width: 100%;
+    background-color: rgb(224, 215, 215);
+}
+
+.table th,
+.table td {
+    padding: 8px;
+    vertical-align: middle;
+    color: rgb(0, 0, 0);
+}
+
+.table thead th {
+    background-color: #333;
+    color: #fff;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f9f9f9;
+}
+
+.table-bordered th,
+.table-bordered td {
+    border: 1px solid #ddd;
+}
+
+.list-unstyled li {
+    margin-bottom: 5px;
+}
+
+</style>

@@ -1,0 +1,51 @@
+{% if request.session.utype == 'admin' %}
+    {% include 'adminpages/admin_header.html' %}
+{% elif  request.session.utype == 'Working Staff' %}
+    {% include 'working_staff_pages/working_staff_header.html' %}
+{% endif %}
+</table>
+<div class="row ">
+    <div class="col-12 grid-margin">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">order view</h4>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                    <th>order date</th>
+                    <th>order amount</th>
+                    <th>name</th>
+                    <th>city</th>
+                    <th>house</th>
+                    <th>district</th>
+                    <th>pincode</th>
+                    <th>place</th>
+                    <th>phone</th>
+                    <th>Assign date</th>
+                    <th>Deliver status</th>
+                    <th>Deliver Date</th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+          
+                {%for i in q %}
+                <tr>
+                    <td>{{i.ORDER.Order_Date}}</td>
+                    <td>{{i.ORDER.Order_Amount}}</td>
+                    <td>{{i.ORDER.A_Fname}} {{i.ORDER.A_Lname}}</td>
+                    <td>{{i.ORDER.A_City}}</td>
+                    <td>{{i.ORDER.A_House}}</td>
+                    <td>{{i.ORDER.A_Dist}}</td>
+                    <td>{{i.ORDER.A_Pin}}</td>
+                    <td>{{i.ORDER.A_Place}}</td>
+                    <td>{{i.ORDER.A_Phone}}</td>
+                    <td>{{i.Dassign_Date}}</td>
+                    <td>{{i.Delivery_Status}}</td>
+                    <td>{{i.Delivery_Date}}</td>
+                </tr>
+                {%endfor%}
+
+</tbody>
+{%include 'footer.html'%}
